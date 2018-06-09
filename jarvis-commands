@@ -13,7 +13,7 @@ ENCORE*==jv_repeat_last_command
 >*NON*|*PAS*==say "j'en suis navré"
 
 *HEURE*==say "Il est $(./commandes/time)"
-*DATE*|*QUEL JOUR*==say "Nous somme le $(./commandes/date)"
+*DATE*|*QUEL JOUR*==say "Nous somme le $(./commandes/date.sh)"
 ORDINATEUR==say "Qui y a t'il monsieur ?"
 *LUMIERE*==say "La lumiere est $(./commandes/lumiere.sh)"
 
