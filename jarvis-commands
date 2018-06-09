@@ -1,0 +1,41 @@
+*AIDE*==jv_display_commands
+*BONJOUR*|*SALUT*==say "Bonjour $username"
+*COMMENT*APPELLE*==say "Je suis $trigger"
+*AU REVOIR*|*BYE*==say "Au revoir $username"; jv_exit
+*MERCI*==bypass=false; say "Je vous en pris"
+*NON*RIEN*==bypass=false; say "Ok"
+ENCORE*==jv_repeat_last_command
+*TEST*==say "Ca fonctionne!"
+*VERSION*==say "Je suis en version $jv_version"
+*REPETE (*) ET (*)==say "(1) (2)"
+*CA VA*==say "Très bien et vous ça va?"
+>*OUI*==say "ravi de l'entendre"
+>*NON*|*PAS*==say "j'en suis navré"
+
+*HEURE*==say "Il est $(./commandes/time)"
+*DATE*|*QUEL JOUR*==say "Nous somme le $(./commandes/date)"
+ORDINATEUR==say "Qui y a t'il monsieur ?"
+*LUMIERE*==say "La lumiere est $(./commandes/lumiere)"
+
+*AUGMENTE*VOLUME A (*)|*BAISSE*VOLUME A (*)|*MET*VOLUME A (*)==amixer sset 'Master' (1)% && say "Le volume est a (1)"
+*AUGMENTE*SON*|*AUGMENTE*VOLUME*|*PLUS*FORT*==./commandes/volumePlus.sh && say "J'augmente le volume"
+*BAISSE*SON*|*BAISSE*VOLUME*|*MOIN*FORT*|*REDUI*VOLUME*==./commandes/volumeMoins.sh && say "Je baisse le volume"
+
+*MODE*NUIT*==./commandes/nuit.sh && ./commandes/lumiere && say "Je passe en mode nuit"
+*BONNE*NUIT*==./commandes/nuit.sh && say "Bonne nuit $username"
+*MODE JOUR*==./commandes/jour.sh && say "Je passe en mode jour"
+
+*MET*PLAYLIST*|*LANCE*PLAYLIST*|*BALANCE*PLAYLIST*==say "Quel artiste voulez vous lancer ?"
+>(*)==./commandes/startPlaylist.sh "(1)" && say "La playlist (1) va bientot se lancer..." && amixer sset 'Master' 40%
+
+*MET*MUSIQUE*|*LANCE*MUSIQUE*|*BALANCE*SON*==say "Quel morceau voulez vous jouer ?"
+>(*)==./commandes/startMusique.sh "(1)" && say "Le morceau (1) va bientot se lancer..." && amixer sset 'Master' 40%
+*ARRET*MUSIQUE*|*STOP*MUSIQUE*|*COUPE*MUSIQUE*== ./commandes/stopMusique.sh && say "La musique est arrêté."
+
+*ALARME*POUR (*)H(*) ==./commandes/alarm.sh (1) (2) && say "Une alarme a été programmé pour (1)h(2)"
+*REVEIL*POUR (*) A (*)H(*)|*ALARM*POUR (*) A (*)H(*)|*REVEIL*MOI (*) A (*)H(*)==./commandes/alarm.sh "(1)" (2) (3) && say "Une alarme a été programmé pour (1) a (2)h(3)"
+*COUPE*MUSIQUE*|*COUPE*REVEIL* ==killall mplayer && say "La musique est arrêté"
+
+*REDEMARRAGE*==say "Très bien monsieur, j'ai cependant besoin d'un mot de passe"
+>(*)==sudo ./commandes/reboot.sh (1)
+
