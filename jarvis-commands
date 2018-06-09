@@ -15,7 +15,7 @@ ENCORE*==jv_repeat_last_command
 *HEURE*==say "Il est $(./commandes/time)"
 *DATE*|*QUEL JOUR*==say "Nous somme le $(./commandes/date)"
 ORDINATEUR==say "Qui y a t'il monsieur ?"
-*LUMIERE*==say "La lumiere est $(./commandes/lumiere)"
+*LUMIERE*==say "La lumiere est $(./commandes/lumiere.sh)"
 
 *AUGMENTE*VOLUME A (*)|*BAISSE*VOLUME A (*)|*MET*VOLUME A (*)==amixer sset 'Master' (1)% && say "Le volume est a (1)"
 *AUGMENTE*SON*|*AUGMENTE*VOLUME*|*PLUS*FORT*==./commandes/volumePlus.sh && say "J'augmente le volume"
